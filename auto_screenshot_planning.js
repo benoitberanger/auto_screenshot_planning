@@ -1,8 +1,13 @@
+// load libs
+const os = require('os');
+const path = require('path');
 const puppeteer = require('puppeteer');
 
 // Load my credentions from txt files
+const homedir = os.homedir();
+const cred_path = path.join(homedir, 'credentials_auto_screenshot_planning');
 var fs = require('fs');
-var CREDS = JSON.parse(fs.readFileSync('~/credentials_auto_screenshot_planning', 'utf8'));
+var CREDS = JSON.parse(fs.readFileSync(cred_path, 'utf8'));
 
 // Main
 (async () => {
