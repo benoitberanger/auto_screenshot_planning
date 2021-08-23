@@ -63,7 +63,7 @@ var CREDS = JSON.parse(fs.readFileSync(cred_path, 'utf8'));
       var room = area[key];
       
       // got the pritable page
-      await page.goto(`http://reservation.cenir.org/week_all.php?day=${day}&month=${month}&year=${year}&area=${room}&pview=1`)
+      await page.goto(`http://reservation.cenir.org/week_all.php?year=${year}&month=${month}&day=${day}&area=${room}&pview=1`)
       
       // Set page size
       if (key=='mri'){
