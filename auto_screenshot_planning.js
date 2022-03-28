@@ -18,7 +18,7 @@ var CREDS = JSON.parse(fs.readFileSync(cred_path, 'utf8'));
   console.log('headless webpage opened')
   
   // login to website
-  await page.goto('http://reservation.cenir.org/login.php');
+  await page.goto('https://reservation-cenir.icm-institute.org/login.php');
   await page.type('#login', CREDS.username);
   await page.type('[type="password"]', CREDS.password);
   await page.keyboard.press('Enter');
@@ -36,7 +36,7 @@ var CREDS = JSON.parse(fs.readFileSync(cred_path, 'utf8'));
      }
      console.log('directory created successfully')
   });
-
+  
   var area = {
     mri: 1,
     meg: 4,
@@ -51,20 +51,20 @@ var CREDS = JSON.parse(fs.readFileSync(cred_path, 'utf8'));
   
   // Loop : print a screenshot for this week and the 4 next ones
   for (i=0; i<5; i++){
-    
+  
     if (i>0) date.setDate(date.getDate() + 7);
-    
+  
     var year  = date.getFullYear();
     var month = date.getMonth()+1;
     var day   = date.getDate();
-    
+  
     for (var key in area) {
-      
+  
       var room = area[key];
-      
+  
       // got the pritable page
-      await page.goto(`http://reservation.cenir.org/week_all.php?year=${year}&month=${month}&day=${day}&area=${room}&pview=1`)
-      
+      await page.goto(`https://reservation-cenir.icm-institute.org/week_all.php?year=${year}&month=${month}&day=${day}&area=${room}&pview=1`)
+  
       // Set page size
       if (key=='mri'){
         await page.setViewport({
@@ -78,12 +78,12 @@ var CREDS = JSON.parse(fs.readFileSync(cred_path, 'utf8'));
           height: 600,
         });
       }
-      
+  
       // Print
       fname = `/network/lustre/iss01/cenir/analyse/irm/studies/cenir/screenshots_planning/${timestamp}/${timestamp}_planning_${key}_${i}.png`;
       console.log(fname);
       await page.screenshot({ path: fname });
-      
+  
     }
   }
   
