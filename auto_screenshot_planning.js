@@ -29,7 +29,7 @@ var CREDS = JSON.parse(fs.readFileSync(cred_path, 'utf8'));
   var date  = new Date();
   var timestamp = date.toISOString().split('T')[0]; // will be YYYY-MM-DD
   
-  fpath = `/network/lustre/iss01/cenir/analyse/irm/studies/cenir/screenshots_planning/${timestamp}/`;
+  fpath = `/network/lustre/iss02/cenir/analyse/irm/studies/cenir/screenshots_planning/${timestamp}/`;
   fs.mkdir( fpath, { recursive: true }, (err) => {
      if (err) {
        return console.error(err);
@@ -80,7 +80,7 @@ var CREDS = JSON.parse(fs.readFileSync(cred_path, 'utf8'));
       }
   
       // Print
-      fname = `/network/lustre/iss01/cenir/analyse/irm/studies/cenir/screenshots_planning/${timestamp}/${timestamp}_planning_${key}_${i}.png`;
+      fname = `/network/lustre/iss02/cenir/analyse/irm/studies/cenir/screenshots_planning/${timestamp}/${timestamp}_planning_${key}_${i}.png`;
       console.log(fname);
       await page.screenshot({ path: fname });
   
